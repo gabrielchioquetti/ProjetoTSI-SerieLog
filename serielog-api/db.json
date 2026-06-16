@@ -1,0 +1,85 @@
+{
+  "series": [
+    {
+      "id": "2",
+      "titulo": "Succession",
+      "genero": "Drama",
+      "nota": 10,
+      "ano": 2018,
+      "assistida": true
+    },
+    {
+      "id": "3",
+      "titulo": "Severance",
+      "genero": "Ficção Científica",
+      "nota": 8.7,
+      "ano": 2022,
+      "assistida": false
+    },
+    {
+      "id": "4",
+      "titulo": "The Wire",
+      "genero": "Crime / Drama",
+      "nota": 9.3,
+      "ano": 2002,
+      "assistida": true
+    },
+    {
+      "id": "5",
+      "titulo": "Fleabag",
+      "genero": "Comédia",
+      "nota": 8.7,
+      "ano": 2016,
+      "assistida": false
+    },
+    {
+      "id": "6",
+      "titulo": "Chernobyl",
+      "genero": "Drama / História",
+      "nota": 9.4,
+      "ano": 2019,
+      "assistida": true
+    },
+    {
+      "id": "7",
+      "titulo": "Breaking Bad",
+      "genero": "Crime / Drama",
+      "nota": 9.5,
+      "ano": 2008,
+      "assistida": true
+    },
+    {
+      "id": "8",
+      "titulo": "Better Call Saul",
+      "genero": "Drama / Crime",
+      "nota": 9.0,
+      "ano": 2015,
+      "assistida": false
+    },
+    {
+      "id": "9",
+      "titulo": "Dark",
+      "genero": "Ficção Científica / Suspense",
+      "nota": 8.8,
+      "ano": 2017,
+      "assistida": true
+    },
+    {
+      "id": "10",
+      "titulo": "Stranger Things",
+      "genero": "Ficção Científica / Terror",
+      "nota": 8.6,
+      "ano": 2016,
+      "assistida": true
+    },
+    {
+      "id": "11",
+      "titulo": "The Bear",
+      "genero": "Drama / Comédia",
+      "nota": 8.9,
+      "ano": 2022,
+      "assistida": false
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

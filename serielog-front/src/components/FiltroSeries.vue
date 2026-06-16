@@ -4,18 +4,10 @@
       <label for="genero">Gênero:</label>
       <select id="genero" v-model="filtros.genero" @change="emitirFiltros">
         <option value="">Todos</option>
-        <option value="Ação">Ação</option>
-        <option value="Comédia">Comédia</option>
-        <option value="Crime / Drama">Crime / Drama</option>
-        <option value="Drama">Drama</option>
-        <option value="Drama / Comédia">Drama / Comédia</option>
-        <option value="Drama / Crime">Drama / Crime</option>
-        <option value="Drama / História">Drama / História</option>
-        <option value="Ficção Científica">Ficção Científica</option>
-        <option value="Ficção Científica / Suspense">Ficção Científica / Suspense</option>
-        <option value="Ficção Científica / Terror">Ficção Científica / Terror</option>
-        <option value="Outros">Outros</option>
-        </select>
+        <option v-for="genero in generos" :key="genero" :value="genero">
+          {{ genero }}
+        </option>
+      </select>
     </div>
 
     <div class="filtro-grupo">
@@ -26,45 +18,83 @@
         <option value="nao-assistidas">Não Assistidas</option>
       </select>
     </div>
+
+    <button 
+      v-if="temFiltroAtivo" 
+      @click="limparFiltros" 
+      class="btn-limpar"
+    >
+      Limpar Filtros
+    </button>
   </div>
 </template>
 
 <script setup>
-    import { reactive } from 'vue';
+  import { reactive, computed } from 'vue';
 
-    const emit = defineEmits(['filtrar']);
-
-    const filtros = reactive({
-        genero: '',
-        status: 'todas'
-    });
-
-    function emitirFiltros() {
-        emit('filtrar', { ...filtros });
+  const props = defineProps({
+    generos: {
+      type: Array,
+      default: () => []
     }
+  });
+
+  const emit = defineEmits(['filtrar']);
+
+  const filtros = reactive({
+    genero: '',
+    status: 'todas'
+  });
+
+  const temFiltroAtivo = computed(() => {
+    return filtros.genero !== '' || filtros.status !== 'todas';
+  });
+
+  function emitirFiltros() {
+    emit('filtrar', { ...filtros });
+  }
+
+  function limparFiltros() {
+    filtros.genero = '';
+    filtros.status = 'todas';
+    emitirFiltros();
+  }
 </script>
 
 <style scoped>
-    .filtros-container {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin: 20px 0;
-        background-color: #f5f5f5;
-        padding: 15px;
-        border-radius: 8px;
-    }
+  .filtros-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+  }
 
-    .filtro-grupo {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
+  .filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 
-    select {
-        padding: 8px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        min-width: 150px;
-    }
+  select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-width: 150px;
+  }
+
+  .btn-limpar {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    margin-top: auto;
+  }
+
+  .btn-limpar:hover {
+    background-color: #e0e0e0;
+  }
 </style>

@@ -5,7 +5,7 @@
     <span class="nota">⭐ {{ serie.nota }}</span>
     <p>{{ serie.ano }}</p>
     <p>{{ serie.assistida ? "Assistida" : "Não assistida" }}</p>
-    <button id="btn-acao" @click="emit('acao', serie.id)">{{ textoBotao }}</button>
+    <button @click.stop="$emit('acao', serie.id)">Remover</button>
     </div>
 </template>
 

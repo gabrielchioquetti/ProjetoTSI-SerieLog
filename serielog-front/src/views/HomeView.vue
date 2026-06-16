@@ -6,9 +6,10 @@
     <FiltroSeries @filtrar="atualizarFiltros" />
 
     <div id="cards">
-        <RouterLink v-for="serie in seriesFiltradas" :key="serie.id" :to="`/series/${serie.id}`" id="detalheCard">
-            <SerieCard :serie="serie" textoBotao="Remover" @acao="remover"/>
-        </RouterLink>
+      <div v-for="serie in seriesFiltradas" :key="serie.id" id="detalheCard">
+        <RouterLink :to="`/series/${serie.id}`" id="detalhe">Ver detalhes</RouterLink>
+        <SerieCard  :serie="serie" :textoBotao="'Remover'" @acao="remover"/>
+      </div>
     </div>
   </main>
 </template>
@@ -59,11 +60,19 @@
     });
 
     async function remover(id) {
-      const res = await fetch(`http://localhost:3000/series/${id}`,{
+      try {
+        const res = await fetch(`http://localhost:3000/series/${id}`, {
           method: "DELETE",
-      });
-      if (!res.ok) throw new Error("Erro ao remover");
-      series.value = series.value.filter((serie) => serie.id !== id);
+        });
+
+        if (!res.ok) throw new Error("Erro ao remover");
+
+        series.value = series.value.filter((serie) => serie.id !== id);
+
+      } catch (err) {
+        console.error(err);
+        alert("Erro ao remover série");
+      }
     }
 </script>
 
@@ -77,5 +86,8 @@
     }
     #detalheCard{
         color: black;
+    }
+    #detalhe{
+      margin-top: 5px;
     }
 </style>

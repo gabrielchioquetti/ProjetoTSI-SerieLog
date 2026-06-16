@@ -1,6 +1,6 @@
 <template>
   <main>
-    <SerieFormulario @cadastrar="cadastrar" />
+    <SerieFormulario @salvar="cadastrar" />
   </main>
 </template>
 
